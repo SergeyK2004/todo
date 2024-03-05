@@ -1,3 +1,4 @@
+import { Item } from "./components/Item"
 import "./styles/styles.css"
 import { todos } from "./utils/constants"
 
@@ -7,8 +8,7 @@ const template = document.querySelector('#todo-item-template') as HTMLTemplateEl
 
 
 todos.forEach(item => {
-  const itemElement = template.content.querySelector('.todo-item').cloneNode(true) as HTMLElement;
-  const title = itemElement.querySelector('.todo-item__text')
-  title.textContent = item;
+  const todoItem = new Item(template);
+  const itemElement = todoItem.render(item)
   contentElement.prepend(itemElement);
 })
