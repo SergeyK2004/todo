@@ -1,6 +1,16 @@
 import { IItem } from "../types";
 
-export class Item {
+export interface IViewItem {
+    id: string;
+    name: string;
+    render(item: IItem): HTMLElement;
+}
+
+export interface IViewItemConstructor {
+    new (template: HTMLTemplateElement): IViewItem
+}
+
+export class Item implements IViewItem{
 
     protected itemElement: HTMLElement;
     protected title: HTMLElement;
