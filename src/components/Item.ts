@@ -4,6 +4,7 @@ export interface IViewItem {
     id: string;
     name: string;
     render(item: IItem): HTMLElement;
+    setDeleteHandler(handleDeleteItem: Function): void;
 }
 
 export interface IViewItemConstructor {
@@ -14,13 +15,16 @@ export class Item implements IViewItem{
 
     protected itemElement: HTMLElement;
     protected title: HTMLElement;
+    protected deleteButton: HTMLButtonElement;
     protected _id: string;
+    protected handleDeleteItem: Function;
 
     constructor (template: HTMLTemplateElement) {
         this.itemElement = template.content.querySelector('.todo-item').cloneNode(true) as HTMLElement;
-        this.title = this.itemElement.querySelector('.todo-item__text')
-        
+        this.title = this.itemElement.querySelector('.todo-item__text');
+        this.deleteButton = this.itemElement.querySelector('.todo-item__del');
     }
+
     set id(value: string) {
         this._id = value;
     }
@@ -35,6 +39,12 @@ export class Item implements IViewItem{
 
     get name(): string {
         return this.title.textContent || '';
+    }
+    setDeleteHandler(handleDeleteItem: Function) {
+        this.handleDeleteItem = handleDeleteItem;
+        this.deleteButton.addEventListener('click', (evt) => {
+            this.handleDeleteItem(this)
+        })
     }
 
     render(item: IItem) {
