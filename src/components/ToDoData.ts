@@ -29,4 +29,10 @@ export class ToDoData implements IToDoData{
     getItem(id: string) {
         return this._items.find(item => item.id === id)
     }
+
+    editItem (id: string, name: string) {
+        const editedItem = this._items.find(item => item.id === id);
+        editedItem.name = name;
+    }
+
 }

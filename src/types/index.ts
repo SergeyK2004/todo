@@ -8,4 +8,5 @@ export interface IToDoData {
     addItem: (data: string) => IItem;
     removeItem: (id: string) => void;
     getItem: (id: string) => IItem;
+    editItem: (id: string, name: string) => void;
 }
