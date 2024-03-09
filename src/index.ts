@@ -4,7 +4,6 @@ import { ItemsContainer } from "./components/ItemContainer"
 import { ItemPresenter } from "./components/ItemPresenter"
 import { ToDoData } from "./components/ToDoData"
 import "./styles/styles.css"
-import { IItem } from "./types"
 import { todos } from "./utils/constants"
 
 const contentElement = document.querySelector('.todos__list') as HTMLElement;
@@ -18,3 +17,4 @@ todoArray.items = todos;
 
 const itemPresenter = new ItemPresenter(todoArray, todoForm, itemContainer, Item);
 
+itemPresenter.init();

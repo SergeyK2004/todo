@@ -5,6 +5,7 @@ export interface IViewItem {
     name: string;
     render(item: IItem): HTMLElement;
     setDeleteHandler(handleDeleteItem: Function): void;
+    setCopyHandler(handleCopyItem: Function): void;
 }
 
 export interface IViewItemConstructor {
@@ -16,13 +17,16 @@ export class Item implements IViewItem{
     protected itemElement: HTMLElement;
     protected title: HTMLElement;
     protected deleteButton: HTMLButtonElement;
+    protected copyButton: HTMLButtonElement;
     protected _id: string;
     protected handleDeleteItem: Function;
+    protected handleCopyItem: Function;
 
     constructor (template: HTMLTemplateElement) {
         this.itemElement = template.content.querySelector('.todo-item').cloneNode(true) as HTMLElement;
         this.title = this.itemElement.querySelector('.todo-item__text');
         this.deleteButton = this.itemElement.querySelector('.todo-item__del');
+        this.copyButton = this.itemElement.querySelector('.todo-item__copy');
     }
 
     set id(value: string) {
@@ -44,6 +48,12 @@ export class Item implements IViewItem{
         this.handleDeleteItem = handleDeleteItem;
         this.deleteButton.addEventListener('click', (evt) => {
             this.handleDeleteItem(this)
+        })
+    }
+    setCopyHandler(handleCopyItem: Function) {
+        this.handleCopyItem = handleCopyItem;
+        this.copyButton.addEventListener('click', (evt) => {
+            this.handleCopyItem(this)
         })
     }
 
