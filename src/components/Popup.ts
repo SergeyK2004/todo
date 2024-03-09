@@ -4,7 +4,7 @@ export interface IPopup {
     close(): void;
 }
 
-export class Popup {
+export class Popup implements IPopup{
 	protected closeButton: HTMLButtonElement;
 	protected _content: HTMLElement;
 

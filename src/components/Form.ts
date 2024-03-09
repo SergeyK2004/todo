@@ -12,7 +12,7 @@ export interface IFormConstructor {
     new (formTemplate: HTMLTemplateElement): IForm;
 }
 
-export class Form {
+export class Form implements IForm{
 	protected formElement: HTMLFormElement;
 	protected inputField: HTMLInputElement;
 	protected handleFormSubmit: Function;

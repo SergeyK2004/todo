@@ -3,7 +3,7 @@ export interface IPage {
     todoContainer: HTMLElement[]; 
 }
 
-export class Page {
+export class Page implements IPage{
     _formContainer: HTMLElement;
     _todoContainer: HTMLElement;
 
