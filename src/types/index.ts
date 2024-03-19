@@ -3,7 +3,7 @@ export interface IItem {
     name: string;
 }
 
-export interface IToDoData {
+export interface IToDoModel {
     items: IItem[];
     addItem: (data: string) => IItem;
     removeItem: (id: string) => void;
